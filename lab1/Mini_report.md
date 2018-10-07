@@ -28,13 +28,13 @@ The prototype pattern specifies the kinds of objects to create using a prototypi
 
 ``` ruby
 def take_pizza_order(pizza_type)
-    pizza_prototype = pizza_prototype_collection[pizza_type]
-    raise 'unsupported pizza type' unless pizza_prototype
+  pizza_prototype = pizza_prototype_collection[pizza_type]
+  raise 'unsupported pizza type' unless pizza_prototype
 
-    pizza = pizza_prototype.clone
-    pizza.bake
-    pizza
-  end
+  pizza = pizza_prototype.clone
+  pizza.bake
+  pizza
+end
 ```
 To add a new type of pizza to the menu, one could create a pizza prototype and add it to the prototype collection at run-time. As long as the corresponding prototype could be found, the PizzaStore would be able to take order for any pizza.
 
