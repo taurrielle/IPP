@@ -75,3 +75,48 @@ Finally, the index page should look something like this, with all the orders lis
 ![img](https://github.com/taurrielle/IPP/blob/master/imgs/2.png)
 
 
+3. **Composite**
+
+The intent of the Composite pattern is to compose objects into tree structures to represent part-whole hierarchies. Composite lets clients treat individual objects and compositions of objects uniformly. For this pattern I tried to simulate how the room service works. We have tasks that are to be executed in order to compete the order. So, I created the base class called `BaseTask`.
+
+```ruby
+class Services::Tasks::BaseTask
+  attr_reader :name
+
+  def initialize(name, room, order)
+    @name = name
+    @room = room
+    @order = order
+  end
+
+  def execute_task
+    puts @name + " for room ##{@room}\n"
+  end
+end
+```
+It is initialized with a name, room and order and it is executed by simply printing something in the console. Besides this base class, I also have two child classes: `CookTask` and `DeliveryTask`. 
+
+```ruby
+class Services::Tasks::CookTask < Services::Tasks::BaseTask
+  def initialize(room, order)
+    super('Cook food', room, order)
+  end
+
+  def get_time_required
+    10
+  end
+end
+```
+Here, I initialize it and set a required time for the task to be executed. These tasks, as I said earlier, are needed to be executed in order for the order to be completed, so, naturally, they are called from the `RoomService` class. That's where the magic happens. In the `RoomService` class I execute both tasks and just output how much time, thoretically it would have taken to complete the order. Theoretically, this data can be used later on for statistics ad stuff like that. 
+
+```ruby
+def execute
+  cook_task = Services::Tasks::CookTask.new(@data.room, @data.order)
+  cook_task.execute_task
+  delivery_task = Services::Tasks::DeliveryTask.new(@data.room, @data.order)
+  delivery_task.execute_task
+  puts "Order done in #{cook_task.get_time_required + delivery_task.get_time_required} minutes"
+  @data.update_attributes(status: "DONE")
+end
+ ```
+
