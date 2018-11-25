@@ -120,3 +120,4 @@ def execute
 end
  ```
 
+Granted, these small tasks can be used separately in another service. For example, the `DeliveryTask` can be used in the `LaundryService` to deliver the fresh clothes to the room.
