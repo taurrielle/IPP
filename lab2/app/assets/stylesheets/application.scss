@@ -1,0 +1,156 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ */
+
+@import "bootstrap";
+
+body {
+  padding-top: 40px;
+}
+
+section {
+  overflow: auto;
+}
+
+textarea {
+  resize: vertical;
+}
+
+.center {
+  text-align: center;
+}
+
+.center h1 {
+  margin-bottom: 10px;
+}
+
+h1, h2 {
+  line-height: 1;
+}
+
+h1 {
+  font-size: 3em;
+  letter-spacing: -2px;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+h2 {
+  font-size: 2em;
+  letter-spacing: -1px;
+  margin-bottom: 20px;
+  text-align: center;
+  font-weight: normal;
+  color: #777;
+}
+
+h3 {
+  font-size: 1.2em;
+  letter-spacing: -1px;
+  margin-top: 10px;
+  line-height: 0.7;
+}
+
+p {
+  font-size: 1.1em;
+  line-height: 0.8em;
+}
+
+#logo {
+  float: left;
+  margin-right: 30px;
+  font-size: 1.7em;
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: -1px;
+  padding-top: 9px;
+  font-weight: bold;
+}
+
+#logo:hover {
+  color: #fff;
+  text-decoration: none;
+}
+
+input {
+  // width: 100%;
+  // margin-bottom: 15px;
+  height: auto !important;
+}
+
+#cancel-btn {
+  float: right;
+}
+form {
+  text-align: left;
+  width: 300px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#error {
+  width: 300px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  display: none;
+}
+
+#accounts, #transactions {
+  width: 350px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 0px;
+}
+
+#account_form, #transaction_form {
+  display: none;
+}
+
+input[type="checkbox"], input[type="radio"] {
+  width: 5%;
+}
+
+.alert-alert {
+  @extend .alert-warning;
+}
+
+.alert-notice {
+  @extend .alert-info;
+}
+
+nav > ul > li > a:hover {
+border-bottom: 2px solid #85d4cd;
+text-decoration: none;
+}
+
+li.active > a{
+  border-bottom: 2px solid #85d4cd;
+}
+
+nav > ul > li > a {
+  font-size: 1.1em;
+  letter-spacing: -0.3px;
+  border-bottom: 2px solid #333
+}
+
+.list-group {
+  margin-bottom: 30px;
+  margin-top: 30px;
+  width: 70%;
+}
+
+.container {
+  width: 60%;
+}

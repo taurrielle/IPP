@@ -1,0 +1,36 @@
+<%= link_to "New order", new_order_url, class: "btn btn-info" %>
+
+<center>
+<ul class="list-group">
+  <li class="list-group-item d-flex justify-content-between align-items-center">
+    Orders
+    <span class="badge badge-primary badge-pill"><%= @order_facade.all_orders_nr %></span>
+  </li>
+  <li class="list-group-item d-flex justify-content-between align-items-center">
+    Pending orders
+    <span class="badge badge-primary badge-pill"><%= @order_facade.pending_orders_nr %></span>
+  </li>
+  <li class="list-group-item d-flex justify-content-between align-items-center">
+    Completed orders
+    <span class="badge badge-primary badge-pill"><%= @order_facade.done_orders_nr %></span>
+  </li>
+</ul>
+</center>
+
+<h2>Prevoius orders</h2>
+
+<% @order_facade.all_orders.each do |order| %>
+
+<div class="card">
+  <div class="card-header">
+    <h3 class="card-title">Order #<%= order["id"] %></h3>
+  </div>
+  <div class="card-body">
+    <p class="card-text"><strong>Service:</strong> <%= order["service"] %></p>
+    <p class="card-text"><strong>Room:</strong> <%= order["room"] %></p>
+    <p class="card-text"><strong>Order:</strong> <%= order["order"] %></p>
+    <p class="card-text"><strong>Status:</strong> <%= order["status"] %></p>
+  </div>
+</div>
+<br>
+<% end %>
