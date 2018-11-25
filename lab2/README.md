@@ -1,24 +1,4 @@
-# README
+In this laboratory work I used three creational design patterns: command, facade and composite. I developed a Rails application where the staff of a hotel can input the cients' orders and automatically sends these orders to the specified departments that need to take care of the order (for example the kitchen). 
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+1. **Command**
+As I said earlier, in this app we the hotel's staff can create orders by completing a form. 
