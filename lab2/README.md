@@ -34,4 +34,42 @@ def act_on_requests
 end
 ```
 
+So, with this method I distribute the responsibility and knowledge back to each request and let it decide how to handle itself, thus decoupling the command from when and where it is sent.
+
+2. **Facade**
+
+The Facade pattern provides a unified interface to a set of interfaces in a subsystem. Facade defines a higher-level interface that makes the subsystem easier to use. So that's what I did to simplify a the `Orders` controller, I used Facade to remove the responsibility of preparing data for the view and create unified face visible to outside world. I created a `OrdersFacade` class that will handle all the data preparations. 
+
+```ruby
+class OrdersFacade
+  def all_orders
+    @all_orders ||= Order.all.reverse
+  end
+
+  def all_orders_nr
+    @all_orders_nr ||= all_orders.count
+  end
+
+  def pending_orders_nr
+    @pending_orders_nr ||= Order.where(status: "PENDING").count
+  end
+
+  def done_orders_nr
+    @done_orders_nr ||= Order.where(status: "DONE").count
+  end
+end
+```
+This facade class gathers all the information I need in the view, like all hte orders, their number, the number of pending orders and the number of completed orders. So, I just initialize this class in the index method of the controller:
+
+```ruby
+@order_facade = OrdersFacade.new
+```
+
+and use it in the view like this:
+```ruby
+<%= @order_facade.all_orders_nr %>
+```
+
+
+
 
