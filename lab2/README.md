@@ -70,6 +70,8 @@ and use it in the view like this:
 <%= @order_facade.all_orders_nr %>
 ```
 
+Finally, the index page should look something like this, with all the orders listed and the counters in place:
 
+![img](https://github.com/taurrielle/IPP/blob/master/imgs/2.png)
 
 
