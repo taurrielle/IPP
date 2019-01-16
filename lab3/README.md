@@ -17,3 +17,41 @@ def greet_customers
   puts "\n\n"
 end
 ```
+
+2. **Decorator**
+
+The Decorator pattern allows us to add behavior to a given object without having to add that behavior to the class of the object. This gives us the ability to decorate objects with additional behavior for use within a specific context. The class I decided to "decorate" is my Coffee class. 
+
+```
+class Coffee
+  attr_accessor :making_time, :name
+
+  def initialize
+    @name = "Coffee"
+  end
+
+  def making_time
+    2 #minutes
+  end
+end
+```
+
+The first class to decorate is called CoffeeWithCream. The class accepts a coffee object. The coffee object is the component that is to be 'enclosed' by this decorator. I also added additional behavior to the making_time method of the coffee component by adding to it the making_time of coffee with cream.
+
+```
+class CoffeeWithCream
+  attr_accessor :making_time, :name
+
+  def initialize
+    @coffee = Coffee.new
+    @name   = "Coffee with cream"
+  end
+
+  def making_time
+    @coffee.making_time += 1 #minutes
+  end
+end
+```
+
+3. **Proxy**
+
