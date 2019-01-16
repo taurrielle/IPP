@@ -106,3 +106,5 @@ def update(item)
   @unavailable_items << item
 end
 ```
+
+5. **Screenshot**
