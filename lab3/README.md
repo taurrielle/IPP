@@ -72,6 +72,27 @@ end
 
 What basically happens here, is that the waiter checks if the item requested by the client is in the actual menu, then check if the item is available and then send the order to the barista.
 
+The waiter also serves the finishead orders from the barista. It was implemented very easily. I check if the `finished_orders` array is empty. All the finished orders are put here by the barista. If it is not I just call the serve method for each of the items and reinitialize the `finished_orders` array. 
+
+```
+unless @barista.finished_orders.empty?
+  @barista.finished_orders.each do |order|
+    @waiter.serve(order)
+  end
+  @barista.finished_orders = []
+  waiting_for_client = false
+end
+```
+
+And the serve method is just a couple of prints:
+
+```
+def serve(order)
+  puts "\n##################\n"
+  puts "#{order.name} is served\n\n"
+  puts "\n##################\n"
+end
+```
 
 4. **Observer**
 
@@ -108,4 +129,7 @@ end
 ```
 
 5. **Screenshot**
+
+Here, we can see that I ordered a pumpkin spice latte, but there was only one aailable, so I could not order it the second time. 
+
 ![img](https://github.com/taurrielle/IPP/blob/master/imgs/3.png)
