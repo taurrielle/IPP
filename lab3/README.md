@@ -55,3 +55,20 @@ end
 
 3. **Proxy**
 
+As I said above, the waiter basically acts as a proxy between the clients and the barista. It is the waiter who processed the orders and tells the clients that an item is unavailable or that it does not exist in general. All of this is done using the handle method from the waiter class:
+
+```
+def handle(order)
+  return puts "Sorry, we don't serve #{order}\n\n" unless menu.include? order
+
+  if @unavailable_items.include? order
+    return puts "Sorry, the item you ordered is unavailable\n\n"
+  end
+
+  puts "Your order will be: #{order}\n\n"
+  barista.take_order(Object.const_get(order).new)
+end
+```
+
+What basically happens here, is that the waiter checks if the item requested by the client is in the actual menu, then check if the item is available and then send the order to the barista.
+
