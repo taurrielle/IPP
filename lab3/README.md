@@ -1,1 +1,1 @@
-loool
+In this laboratory work I created a Ruby application using 4 patters: Proxy, Iterator, Observer and Decorator. This application simulates the work of a coffee shop (yes, again me and food) with a very fancy barista that does not bother to get the orders himself, he needs a personal waiter to do it or him. The waiter communicates with the clients on behalf of the barista and the barista's only job is to make the coffe and to notify the waiter that some bevarage is unavailable at the moment.
