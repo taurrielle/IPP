@@ -1,42 +1,56 @@
 require "pry"
+require './coffee.rb'
+require './fancy_barista.rb'
+require './waiter.rb'
+require './coffee.rb'
+require './external_iterator.rb'
 
 class LifeCycle
-  def initialize(waiter, barista)
-    @waiter = waiter
-    @barista = barista
+  def initialize
+    @menu = ['Coffee', 'CoffeeWithSugar', 'CoffeeWithCream', 'PumpkinSpiceLatte', 'Ristretto', 'Affogato', 'KopiLuwak']
+    @barista = FancyBarista.new({
+      'Coffee':            15,
+      'CoffeeWithSugar':   10,
+      'PumpkinSpiceLatte': 1,
+      'Ristretto':         2,
+      'Affogato':          3,
+      'KopiLuwak':         1
+    })
+    @waiter = Waiter.new(
+      @menu,
+      @barista,
+      ['CoffeeWithCream']
+    )
+
+    @barista.add_observer(@waiter)
   end
 
   def start
-    orders = []
-    barista_table = []
-    waiting_for_client_thinking = false
+    waiting_for_client = false
+    @waiter.greet_customers
 
     loop do
-
-      unless waiting_for_client_thinking
+      unless waiting_for_client
         Thread.new do
           puts "What is your order?"
-          orders << gets.chomp
+          order = gets.chomp
+          @waiter.handle(order)
+          waiting_for_client = false if order
         end
-        waiting_for_client_thinking = true
+        waiting_for_client = true
       end
 
-      unless orders.empty?
-        orders.each do |order|
-          Thread.new do
-            @waiter.put_order(order)
-          end
-          orders = []
+      unless @barista.finished_orders.empty?
+        @barista.finished_orders.each do |order|
+          @waiter.serve(order)
         end
-      end
+        @barista.finished_orders = []
 
-      unless barista_table.empty?
-        @waiter.give_smth_to_user # puts "espresso"
-        #delete espresso form barista_table
+        @waiter.unavailable_items
+        waiting_for_client = false
       end
-      # print "."
     end
   end
 end
 
-LifeCycle.new("bla", "tla").start
+LifeCycle.new.start

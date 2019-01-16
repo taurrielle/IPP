@@ -1,28 +1,38 @@
 class Coffee
-  attr_accessor :price
+  attr_accessor :making_time, :name
 
-  def price
-    2.50
+  def initialize
+    @name = "Coffee"
+  end
+
+  def making_time
+    2 #minutes
   end
 end
 
 class CoffeeWithCream
-  def initialize(coffee)
-    @coffee = coffee
+  attr_accessor :making_time, :name
+
+  def initialize
+    @coffee = Coffee.new
+    @name   = "Coffee with cream"
   end
 
-  def price
-    @coffee.price += 0.50
+  def making_time
+    @coffee.making_time += 1 #minutes
   end
 end
 
 class CoffeeWithSugar
-  def initialize(coffee)
-    @coffee = coffee
+  attr_accessor :making_time, :name
+
+  def initialize
+    @coffee = Coffee.new
+    @name   = "Coffee with sugar"
   end
 
-  def price
-    @coffee.price += 0.25
+  def making_time
+    @coffee.making_time += 0.5 #minutes
   end
 end
 
@@ -31,33 +41,33 @@ end
 # coffee = CoffeeWithSugar.new(coffee)
 
 class PumpkinSpiceLatte
-  attr_accessor :name, :price
+  attr_accessor :name, :making_time
   def initialize
-    @name = "Pumpkin Spice Latte"
-    @price = 4.50
+    @name        = "Pumpkin Spice Latte"
+    @making_time = 4 #minutes
   end
 end
 
 class Ristretto
-  attr_accessor :name, :price
+  attr_accessor :name, :making_time
   def initialize
-    @name = "Ristretto"
-    @price = 5.50
+    @name        = "Ristretto"
+    @making_time = 5 #minutes
   end
 end
 
 class Affogato
-  attr_accessor :name, :price
+  attr_accessor :name, :making_time
   def initialize
-    @name = "Affogato"
-    @price = 5.0
+    @name        = "Affogato"
+    @making_time = 5 #minutes
   end
 end
 
 class KopiLuwak
-  attr_accessor :name, :price
+  attr_accessor :name, :making_time
   def initialize
-    @name = "Kopi Luwak"
-    @price = 7.50
+    @name        = "Kopi Luwak"
+    @making_time = 7.50 #minutes
   end
 end
