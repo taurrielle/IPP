@@ -75,7 +75,7 @@ What basically happens here, is that the waiter checks if the item requested by 
 
 4. **Observer**
 
-I used the observer pattern with the FancyBarista and the Waiter classes. The BFancyarista class is initialized with an array of observers that can be updated later on using the `add_observer` method. It is also initialized with an orders_capacity hash that contains the information about how many beverages of each type the barista can make. So, when he takes the order, he subtracts that quantity by 1 and if the quantity is equl to zero he notifies all the observers of the fact that there will be no more orders with that type of beverage.
+I used the observer pattern with the FancyBarista and the Waiter classes. The FancyBarista class is initialized with an array of observers that can be updated later on using the `add_observer` method. It is also initialized with an orders_capacity hash that contains the information about how many beverages of each type the barista can make. So, when he takes the order, he subtracts that quantity by 1 and if the quantity is equl to zero he notifies all the observers of the fact that there will be no more orders with that type of beverage.
 
 ```
 def take_order(order)
@@ -87,5 +87,22 @@ def take_order(order)
     sleep order.making_time
     @finished_orders << order
   end
+end
+```
+\# yes, I used threads to make the barista work faster, I'm that hardcore :D
+
+And the notify_observers method looks like this:
+```
+def notify_observers(item)
+  @observers.each do |observer|
+    observer.update(item)
+  end
+end
+```
+
+And the update method in the waiter class looks like this:
+```
+def update(item)
+  @unavailable_items << item
 end
 ```
