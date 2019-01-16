@@ -72,3 +72,20 @@ end
 
 What basically happens here, is that the waiter checks if the item requested by the client is in the actual menu, then check if the item is available and then send the order to the barista.
 
+
+4. **Observer**
+
+I used the observer pattern with the FancyBarista and the Waiter classes. The BFancyarista class is initialized with an array of observers that can be updated later on using the `add_observer` method. It is also initialized with an orders_capacity hash that contains the information about how many beverages of each type the barista can make. So, when he takes the order, he subtracts that quantity by 1 and if the quantity is equl to zero he notifies all the observers of the fact that there will be no more orders with that type of beverage.
+
+```
+def take_order(order)
+  Thread.new do
+    name = order.class.to_s
+    orders_capacity[name.to_sym] = orders_capacity[name.to_sym] - 1
+    notify_observers(name) if orders_capacity[name.to_sym] == 0
+
+    sleep order.making_time
+    @finished_orders << order
+  end
+end
+```
